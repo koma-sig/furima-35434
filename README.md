@@ -1,24 +1,60 @@
-# README
+## users テーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column      | Type   | Option      |
+| ----------- | ------ | ----------- |
+| nickname    | string | null: false |
+| email       | string | null: false |
+| password    | string | null: false |
+| first-name  | string | null: false |
+| second-name | string | null: false |
+| birthday    | string | null: false |
 
-Things you may want to cover:
+### Association
+- has_many :items
+- has_many :comments
+- has_one  :purchases
 
-* Ruby version
+## Comment テーブル
 
-* System dependencies
+| Column | Type   | Option |
+| ------ | ------ | ------ |
+| text   | text   |        |
 
-* Configuration
+### Association
+- belongs_to :users
+- belongs_to :item
 
-* Database creation
+## Items テーブル
 
-* Database initialization
+| Column              | Type   | Option      |
+| ------------------- | ------ | ----------- |
+| product             | string | null :false |
+| product-description | string | null :false |
+| image               |        | null :false |
+| price               | text   | null :false |
+| fee                 | text   | null :false |
+| profit              | text   | null :false |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- has_many   :contents
+- belongs_to :users
+- belongs_to :purchases
 
-* Deployment instructions
+## Purchases テーブル
 
-* ...
+| Column        | Type    | Option      |
+| ------------- | ------- | ----------- |
+| card-number   | integer | null :false |
+| card-deadline | integer | null :false |
+| security-code | integer | null :false |
+| postal-code   | integer | null :false |
+| municipality  | string  | null :false |
+| address       | integer | null :false |
+| building-name | string  |             |
+| phone-number  | integer | null :false |
+
+### Association
+
+- has_one :items
+- belongs_to :users
