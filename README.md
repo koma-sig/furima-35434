@@ -1,24 +1,66 @@
-# README
+## users テーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column             | Type    | Option                    |
+| ------------------ | ------- | ------------------------- |
+| nickname           | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| first_name         | string  | null: false               |
+| second_name        | string  | null: false               |
+| birthday           | date    | null: false               |
+| encrypted_password | string  | null: false               |
+| first_name_kana    | string  | null: false               |
+| second_name_kana   | string  | null: false               |
 
-Things you may want to cover:
 
-* Ruby version
+### Association
+- has_many :items
+- has_many :purchases
 
-* System dependencies
+## Items テーブル
 
-* Configuration
+| Column              | Type       | Option            |
+| ------------------- | ---------- | ----------------- |
+| product             | string     | null :false       |
+| product_description | text       | null :false       |
+| category_id         | integer    | null :false       |
+| product_status_id   | integer    | null :false       |
+| delivery_charge_id  | integer    | null :false       |
+| shipment_id         | integer    | null :false       |
+| shipping_days_id    | integer    | null :false       |
+| price               | integer    | null :false       |
+| user                | references | foreign_key: true |
 
-* Database creation
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_one    :purchase
 
-* Services (job queues, cache servers, search engines, etc.)
+## Addresses テーブル 
 
-* Deployment instructions
+| Column        | Type       | Option            |
+| ------------- | ---------- | ----------------- |
+| postal_code   | string     | null :false       |
+| shipment_id   | integer    | null :false       |
+| municipality  | string     | null :false       |
+| address       | string     | null :false       |
+| building_name | string     |                   |
+| phone_number  | string     | null :false       |
+| purchase      | references | foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :purchase
+
+## Purchases テーブル
+
+| Column | Type       | Option            |
+| ------ | ---------- | ----------------- |
+| user   | references | foreign_key: true |
+| item   | references | foreign_key: true |
+
+### Association
+
+- has_one :address
+- belongs_to :item
+- belongs_to :user
