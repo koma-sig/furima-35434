@@ -1,15 +1,15 @@
 ## users テーブル
 
-| Column                | Type    | Option                    |
-| --------------------- | ------- | ------------------------- |
-| nickname              | string  | null: false               |
-| email                 | string  | null: false, unique: true |
-| first-name            | string  | null: false               |
-| second-name           | string  | null: false               |
-| birthday              | date    | null: false               |
-| encrypted_password    | string  | null: false               |
-| first-name,kana       | string  | null: false               |
-| second-name,kana      | string  | null: false               |
+| Column             | Type    | Option                    |
+| ------------------ | ------- | ------------------------- |
+| nickname           | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| first_name         | string  | null: false               |
+| second_name        | string  | null: false               |
+| birthday           | date    | null: false               |
+| encrypted_password | string  | null: false               |
+| first_name_kana    | string  | null: false               |
+| second_name_kana   | string  | null: false               |
 
 
 ### Association
@@ -18,32 +18,33 @@
 
 ## Items テーブル
 
-| Column              | Type       | Option            |
-| ------------------- | -------    | ----------------- |
-| product             | string     | null :false       |
-| product-description | text       | null :false       |
-| category            | references | foreign_key: true |
-| product-status      | references | foreign_key: true |
-| delivery-charge     | references | foreign_key: true |
-| shipment            | references | foreign_key: true |
-| shipping-days       | references | foreign_key: true |
-| price               | integer    | null :false       |
+| Column              | Type    | Option      |
+| ------------------- | ------- | ----------- |
+| product             | string  | null :false |
+| product_description | text    | null :false |
+| category_id         | integer | null :false |
+| product_status_id   | integer | null :false |
+| delivery_charge_id  | integer | null :false |
+| shipment_id         | integer | null :false |
+| shipping_days_id    | integer | null :false |
+| price               | integer | null :false |
 
 ### Association
 
 - belongs_to :user
-- has_one    :purchases
+- has_one    :purchase
 
 ## Addresses テーブル 
 
-| Column        | Type     | Option      |
-| ------------- | -------- | ----------- |
-| postal-code   | string   | null :false |
-| prefectures   | integer  | null :false |
-| municipality  | string   | null :false |
-| address       | string   | null :false |
-| building-name | string   |             |
-| phone-number  | string   | null :false |
+| Column        | Type       | Option            |
+| ------------- | ---------- | ----------------- |
+| postal-code   | string     | null :false       |
+| shipment_id   | integer    | null :false       |
+| municipality  | string     | null :false       |
+| address       | string     | null :false       |
+| building-name | string     |                   |
+| phone-number  | string     | null :false       |
+| purchase      | references | foreign_key: true |
 
 ### Association
 
