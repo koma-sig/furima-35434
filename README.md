@@ -40,26 +40,24 @@
 
 | Column        | Type       | Option            |
 | ------------- | ---------- | ----------------- |
-| postal-code   | string     | null :false       |
+| postal_code   | string     | null :false       |
 | shipment_id   | integer    | null :false       |
 | municipality  | string     | null :false       |
 | address       | string     | null :false       |
-| building-name | string     |                   |
-| phone-number  | string     | null :false       |
+| building_name | string     |                   |
+| phone_number  | string     | null :false       |
 | purchase      | references | foreign_key: true |
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :purchase
 
 ## Purchases テーブル
 
-| Column    | Type       | Option            |
-| --------- | ---------- | ----------------- |
-| buyer     | references | foreign_key: true |
-| purchased | references | foreign_key: true |
-| user      | references | foreign_key: true |
-| item      | references | foreign_key: true |
+| Column | Type       | Option            |
+| ------ | ---------- | ----------------- |
+| user   | references | foreign_key: true |
+| item   | references | foreign_key: true |
 
 ### Association
 
