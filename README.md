@@ -18,16 +18,18 @@
 
 ## Items テーブル
 
-| Column              | Type    | Option      |
-| ------------------- | ------- | ----------- |
-| product             | string  | null :false |
-| product_description | text    | null :false |
-| category_id         | integer | null :false |
-| product_status_id   | integer | null :false |
-| delivery_charge_id  | integer | null :false |
-| shipment_id         | integer | null :false |
-| shipping_days_id    | integer | null :false |
-| price               | integer | null :false |
+| Column              | Type       | Option            |
+| ------------------- | ---------- | ----------------- |
+| product             | string     | null :false       |
+| product_description | text       | null :false       |
+| category_id         | integer    | null :false       |
+| product_status_id   | integer    | null :false       |
+| delivery_charge_id  | integer    | null :false       |
+| shipment_id         | integer    | null :false       |
+| shipping_days_id    | integer    | null :false       |
+| price               | integer    | null :false       |
+| user                | references | foreign_key: true |
+
 
 ### Association
 
@@ -56,6 +58,8 @@
 | --------- | ---------- | ----------------- |
 | buyer     | references | foreign_key: true |
 | purchased | references | foreign_key: true |
+| user      | references | foreign_key: true |
+| item      | references | foreign_key: true |
 
 ### Association
 
