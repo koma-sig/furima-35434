@@ -92,12 +92,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
-      it 'passwordとpassword_confirmationに半角数字が混合されていない' do
-        @user.password = 'aaaaaaa'
-        @user.password_confirmation = 'aaaaaaa'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password no half width digit")
-      end
       it 'emailに@が含まれていない' do
         @user.email = 'test'
         @user.valid?
@@ -151,6 +145,16 @@ RSpec.describe User, type: :model do
       end
       it 'second_name_kanaが全角（カタカナ）で入力されていない' do
         @user.second_name_kana = '111111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Second name kana is invalid")
+      end
+      it 'first_name_kanaの全角文字がカタカナ意外だと登録されない' do
+        @user.first_name_kana = 'ああああ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
+      end
+      it 'second_name_kanaの全角文字がカタカナ意外だと登録されない' do
+        @user.second_name_kana = 'ああああ'
         @user.valid?
         expect(@user.errors.full_messages).to include("Second name kana is invalid")
       end
