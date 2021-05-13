@@ -18,7 +18,7 @@ RSpec.describe Item, type: :model do
           @item.image = nil
           @item.valid?
           expect(@item.errors.full_messages).to include("Image can't be blank")
-        end     
+        end
         it '商品名が空になっている' do
           @item.product = ''
           @item.valid?
@@ -59,7 +59,47 @@ RSpec.describe Item, type: :model do
           @item.valid?
           expect(@item.errors.full_messages).to include("Price can't be blank", "Price is not a number")
         end
+        it 'category_idが未選択のidになっている' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        end
+        it 'product_status_idが未選択のidになっている' do
+          @item.product_status_id = 1
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Product status must be other than 1")
+        end
+        it 'delivery_charge_idが未選択のidになっている' do
+          @item.delivery_charge_id = 1
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Delivery charge must be other than 1")
+        end
+        it 'shipment_idが未選択のidになっている' do
+          @item.shipment_id = 1
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Shipment must be other than 1")
+        end
+        it 'shipping_days_idが未選択のidになっている' do
+          @item.shipping_days_id = 1
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Shipping days must be other than 1")
+        end
+        it '配送料の負担についての情報が下回っている' do
+          @item.price = 200
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        end
+        it '配送料の負担についての情報が上回っている' do
+          @item.price = 1000000000
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        end
+        it '配送料の負担についての情報が全角数字では出品できない' do
+          @item.price = '３００'
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Price is not a number")
         end
       end
     end
   end
+end
