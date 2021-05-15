@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :item_editind_system, only: [:show, :edit, :update,:move_to_index]
+  before_action :item_editind_system, only: [:show, :edit]
   before_action :move_to_index,only: [:edit, :update]
 
   def index
