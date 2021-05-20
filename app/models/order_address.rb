@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :shipment_id, :municipality, :address, :building_name, :phone_number
+  attr_accessor :user_id, :item_id, :postal_code, :shipment_id, :municipality, :address, :building_name, :phone_number, :token
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
@@ -11,7 +11,7 @@ class OrderAddress
     validates :municipality
     validates :address
     validates :phone_number,format: { with:/\A[0-9]{11}\z/}
-    
+    validates :token, presence: true
   end
   
   def save
