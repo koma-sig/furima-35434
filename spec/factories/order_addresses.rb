@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :order_address do
-    user_id     { 0 }
-    item_id     { 0 }
+    user_id     { Faker::Internet.user_id(min_length: 1) }
+    item_id     { Faker::Internet.item_id(min_length: 1) }
     postal_code { '111-1111' }
     shipment_id { 2 }
     municipality{ '盛岡'}
