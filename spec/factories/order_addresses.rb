@@ -1,5 +1,4 @@
 FactoryBot.define do
-  before_action :user_item_params, only: [:user_id, :item_id]
   
   factory :order_address do
     postal_code { '111-1111' }
@@ -11,9 +10,5 @@ FactoryBot.define do
     token        {"tok_abcdefghijk00000000000000000"}
   end
 
-  private
-
-  def user_item_params
-    params.require(:order_address).merge(user_id: current_user.id, item_id: params[:item_id])
-  end
+  
 end
