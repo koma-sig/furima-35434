@@ -11,6 +11,10 @@ RSpec.describe OrderAddress, type: :model do
         @order_address = FactoryBot.build(:order_address)
         expect(@order_address).to be_valid
       end
+      it '建物番号は空でも登録できること'do
+        @order_address.building_name = ' '
+        expect(@order_address).to be_valid
+      end
     end
 
     context '商品出品情報ができない場合' do
@@ -73,6 +77,11 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.token = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
+      it "英数混合では登録できないこと" do
+      @order_address.phone_number = '1a1a1a1a1a1'
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include("Phone number is invalid")
       end
     end
   end

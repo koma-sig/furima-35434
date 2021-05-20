@@ -10,7 +10,7 @@ class OrderAddress
     validates :shipment_id, numericality: { other_than: 1 },presence: true
     validates :municipality
     validates :address
-    validates :phone_number,format: { with:/\A[0-9]{11}\z/}
+    validates :phone_number,format: { with:/\A[0-9]{10, 11}\z/}
     validates :token, presence: true
   end
   
