@@ -61,7 +61,7 @@ group :development do
 end
 
 gem 'pry-rails'
-
+gem 'payjp'
 gem 'devise'
 gem 'active_hash'
 gem 'mini_magick'
